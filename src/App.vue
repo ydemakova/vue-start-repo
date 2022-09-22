@@ -45,10 +45,11 @@
             this.storedResources.unshift(newResource)
 
         },
-        deleteResource(resourceId) {
-            this.storedResources.filter(resource => {
-                resource.id !== resourceId
-            })
+        deleteResource(resourceID) {
+
+          const resourceIndex = this.storedResources.findIndex( res => res.id === resourceID)
+          this.storedResources.splice(resourceIndex, 1)
+
         }
 
       }
