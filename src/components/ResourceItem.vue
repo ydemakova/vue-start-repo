@@ -3,7 +3,7 @@
          <base-card>
          <header>
             <h3>{{title}}</h3>
-           <base-button >Delete</base-button>
+           <base-button @click="deleteResource">Delete</base-button>
       </header>
 
       <p>{{description}}</p>
@@ -19,6 +19,7 @@
 import BaseButton from './UI/BaseButton.vue'
     export default {
   components: { BaseButton },
+        emits: ['delete-resource'],
         props: {
          id: {
             type: String,
@@ -35,6 +36,12 @@ import BaseButton from './UI/BaseButton.vue'
          link: {
             type: String,
             required: true
+         },
+
+         methods: {
+            deleteResource() {
+              this.$emit('delete-resource', this.id)
+            }
          }
         },
     }
