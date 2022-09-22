@@ -3,7 +3,7 @@
     <the-header title="RememberMe"></the-header>
     <add-resource @add-new-resource="addResource"></add-resource>
  <ul>
-   <resource-item v-for="resource in storedResources" :key="resource.id" :title="resource.title" :description="resource.description" :link="resource.link"/>
+   <resource-item v-for="resource in storedResources" @delete-resource="deleteResource" :key="resource.id" :title="resource.title" :description="resource.description" :link="resource.link"/>
  </ul>
 </template>
 
@@ -44,7 +44,13 @@
             }
             this.storedResources.unshift(newResource)
 
+        },
+        deleteResource(resourceId) {
+            this.storedResources.filter(resource => {
+                resource.id !== resourceId
+            })
         }
+
       }
     }
 </script>
